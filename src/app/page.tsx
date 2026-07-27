@@ -1,9 +1,6 @@
 "use client";
 
 import { useEffect, useState, type CSSProperties } from "react";
-import { CaseStudies } from "@/components/CaseStudies";
-import { ContactSection } from "@/components/ContactSection";
-import { FeaturedProjects } from "@/components/FeaturedProjects";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { ThemeMode } from "@/data/portfolio";
@@ -61,12 +58,9 @@ export default function Home() {
               : "linear-gradient(135deg, rgba(163,230,53,0.22), rgba(255,255,255,0.95))",
         }}
       />
-      <main className="mx-auto flex max-w-6xl flex-col px-6 py-8 sm:px-10 lg:px-16 lg:py-12">
+      <main className="mx-auto flex min-h-screen max-w-6xl flex-col justify-center px-6 py-8 sm:px-10 lg:px-16 lg:py-12">
         <Header theme={theme} onToggleTheme={toggleTheme} />
         <Hero />
-        <FeaturedProjects />
-        <CaseStudies />
-        <ContactSection />
       </main>
     </div>
   );

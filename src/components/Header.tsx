@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ThemeMode } from "@/data/portfolio";
 import { ThemeToggle } from "./ThemeToggle";
 
@@ -15,15 +16,15 @@ export function Header({ theme, onToggleTheme }: HeaderProps) {
         </p>
       </div>
       <nav className="flex items-center gap-4 text-sm text-[color:var(--text-secondary)]">
-        <a href="#work" className="transition hover:text-[color:var(--accent)]">
+        <Link href="/work" className="transition hover:text-[color:var(--accent)]">
           Work
-        </a>
-        <a href="#case-studies" className="transition hover:text-[color:var(--accent)]">
+        </Link>
+        <Link href="/case-studies" className="transition hover:text-[color:var(--accent)]">
           Case Studies
-        </a>
-        <a href="#contact" className="transition hover:text-[color:var(--accent)]">
+        </Link>
+        <Link href="/contact" className="transition hover:text-[color:var(--accent)]">
           Contact
-        </a>
+        </Link>
         <ThemeToggle theme={theme} onToggle={onToggleTheme} />
       </nav>
     </header>
