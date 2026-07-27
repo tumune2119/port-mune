@@ -1,8 +1,35 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f8f7ff;
+  --foreground: #0f172a;
+  --page-bg: #f8ffe8;
+  --page-bg-accent: #f2fce8;
+  --surface: #ffffff;
+  --surface-muted: #f7fee7;
+  --surface-strong: #ffffff;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --border-color: rgba(15, 23, 42, 0.08);
+  --accent: #a3e635;
+  --accent-strong: #84cc16;
+}
+
+html.dark,
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --page-bg: #020617;
+  --page-bg-accent: #111827;
+  --surface: #111827;
+  --surface-muted: #1f2937;
+  --surface-strong: #0f172a;
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --border-color: rgba(255, 255, 255, 0.12);
+  --accent: #a3e635;
+  --accent-strong: #84cc16;
 }
 
 @theme inline {
@@ -12,15 +39,19 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  margin: 0;
+  min-height: 100vh;
+  background: var(--page-bg);
+  color: var(--text-primary);
   font-family: Arial, Helvetica, sans-serif;
+  transition: background-color 0.7s ease, color 0.7s ease;
+}
+
+a {
+  text-decoration: none;
 }
