@@ -20,15 +20,16 @@ export function Hero() {
         <div className="mt-8 flex flex-wrap gap-3">
           <a
             href="#case-studies"
-            className="rounded-full bg-[color:var(--accent)] px-5 py-3 text-sm font-semibold text-white shadow-[0_8px_24px_rgba(163,230,53,0.16)] transition duration-300 hover:-translate-y-0.5 hover:bg-[color:var(--accent-strong)] dark:text-slate-950"
+            className="rounded-[4px] bg-[color:var(--accent)] px-5 py-3 text-sm font-semibold text-white shadow-[0_8px_24px_rgba(163,230,53,0.16)] transition duration-300 hover:-translate-y-0.5 hover:bg-[color:var(--accent-strong)] dark:text-slate-950"
           >
             Explore case studies
           </a>
           <a
-            href="#contact"
-            className="rounded-full border border-[color:var(--border-color)] bg-[color:var(--surface-strong)]/70 px-5 py-3 text-sm font-semibold text-[color:var(--text-secondary)] shadow-[0_6px_20px_rgba(15,23,42,0.06)] transition duration-300 hover:-translate-y-0.5 hover:border-[color:var(--accent)] hover:text-[color:var(--accent)]"
+            href="/cv.pdf"
+            download="cv.pdf"
+            className="rounded-[4px] border border-[color:var(--border-color)] bg-[color:var(--surface-strong)]/70 px-5 py-3 text-sm font-semibold text-[color:var(--text-secondary)] shadow-[0_6px_20px_rgba(15,23,42,0.06)] transition duration-300 hover:-translate-y-0.5 hover:border-[color:var(--accent)] hover:text-[color:var(--accent)]"
           >
-            Let’s connect
+            Download CV
           </a>
         </div>
       </div>
