@@ -1,3 +1,6 @@
+// The experience timeline renders the professional and academic milestones
+// that shape the portfolio narrative. It uses the portfolio data to create a
+// vertical timeline with each milestone's period, role, and description.
 import { experienceMilestones } from "@/data/portfolio";
 
 export function ExperienceTimeline() {

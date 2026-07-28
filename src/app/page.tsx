@@ -1,5 +1,8 @@
 "use client";
 
+// The home page is the main landing experience for the portfolio.
+// It composes the header, hero section, project showcase, experience timeline,
+// and contact area while also managing the light/dark theme state.
 import { useEffect, useState, type CSSProperties } from "react";
 import { ContactSection } from "@/components/ContactSection";
 import { ExperienceTimeline } from "@/components/ExperienceTimeline";
@@ -10,8 +13,10 @@ import { SocialLinks } from "@/components/SocialLinks";
 import { ThemeMode } from "@/data/portfolio";
 
 export default function Home() {
+  // Keep the current visual theme in state so the UI can react to user changes.
   const [theme, setTheme] = useState<ThemeMode>("dark");
 
+  // Restore the saved theme from browser storage on the first render.
   useEffect(() => {
     const storedTheme = window.localStorage.getItem("theme") as ThemeMode | null;
     const initialTheme = storedTheme ?? "dark";
@@ -20,6 +25,7 @@ export default function Home() {
     document.documentElement.dataset.theme = initialTheme;
   }, []);
 
+  // Apply the selected theme to the document and update the CSS variables used throughout the page.
   useEffect(() => {
     document.documentElement.classList.toggle("dark", theme === "dark");
     document.documentElement.dataset.theme = theme;
@@ -37,10 +43,12 @@ export default function Home() {
     document.documentElement.style.setProperty("--accent-strong", theme === "dark" ? "#84cc16" : "#3f6212");
   }, [theme]);
 
+  // Toggle between light and dark mode when the user activates the theme switch.
   const toggleTheme = () => {
     setTheme((current) => (current === "dark" ? "light" : "dark"));
   };
 
+  // Build the background styling for the page so the hero and sections feel immersive.
   const pageStyle: CSSProperties = {
     background: `radial-gradient(circle_at_top_left, rgba(163,230,53,0.16), transparent 35%), linear-gradient(135deg, var(--page-bg) 0%, var(--page-bg-accent) 45%, var(--page-bg) 100%)`,
     color: "var(--text-primary)",
@@ -49,12 +57,18 @@ export default function Home() {
   return (
     <div className="relative min-h-screen overflow-hidden transition-colors duration-500" style={pageStyle}>
       <main className="mx-auto flex min-h-screen max-w-6xl flex-col px-6 pt-24 pb-8 sm:px-10 sm:pt-28 lg:px-16 lg:pt-30 lg:pb-12">
+        {/* Render the sticky navigation and theme switch at the top of the page. */}
         <Header theme={theme} onToggleTheme={toggleTheme} />
+        {/* Show the introductory hero section first to welcome visitors. */}
         <Hero />
+        {/* Display the featured work cards and project details below the hero. */}
         <FeaturedProjects />
+        {/* Show the professional journey in a timeline layout. */}
         <ExperienceTimeline />
+        {/* Include the contact section so visitors can reach out. */}
         <ContactSection />
 
+        {/* Add the footer with copyright information and social links. */}
         <footer className="mt-16 border-t border-[color:var(--border-color)] pt-6 text-sm text-[color:var(--text-secondary)]">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <p>© 2026 Tharindu Munasinghe. All rights reserved.</p>

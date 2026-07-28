@@ -1,5 +1,8 @@
 "use client";
 
+// The header component renders the sticky top navigation for the portfolio.
+// It shows the brand mark, links to key sections, a theme toggle, and a mobile
+// menu that opens and closes based on local component state.
 import { useState } from "react";
 import { ThemeMode } from "@/data/portfolio";
 import { ThemeToggle } from "./ThemeToggle";
@@ -17,12 +20,14 @@ const navItems = [
 ];
 
 export function Header({ theme, onToggleTheme }: HeaderProps) {
+  // Track whether the mobile navigation menu is currently open.
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <header className="fixed inset-x-0 top-0 z-[60] px-3 pt-2 sm:px-4 sm:pt-3 lg:px-6 lg:pt-4">
       <div className="mx-auto w-full max-w-[72rem] rounded-2xl border border-white/20 bg-white/10 px-4 py-3 shadow-[0_12px_40px_rgba(15,23,42,0.12)] backdrop-blur-2xl transition-colors sm:px-6 dark:border-white/10 dark:bg-slate-900/30">
         <div className="flex items-center justify-between gap-3">
+          {/* Clicking the brand mark closes the mobile menu and jumps back to the home section. */}
           <a href="#home" className="flex items-center gap-3" onClick={() => setIsOpen(false)}>
             <div className="flex h-10 w-10 items-center justify-center rounded-full border border-[color:var(--accent)]/30 bg-[color:var(--surface-muted)] text-sm font-semibold tracking-[0.35em] text-[color:var(--accent)]">
               M
@@ -33,6 +38,7 @@ export function Header({ theme, onToggleTheme }: HeaderProps) {
           </a>
 
           <div className="flex items-center gap-2 sm:gap-3">
+            {/* Show the desktop navigation links only on larger screens. */}
             <div className="hidden items-center gap-2 text-sm text-[color:var(--text-secondary)] sm:flex sm:gap-4">
               {navItems.map((item) => (
                 <a
@@ -45,8 +51,10 @@ export function Header({ theme, onToggleTheme }: HeaderProps) {
               ))}
             </div>
 
+            {/* Render the theme toggle so the user can switch between light and dark modes. */}
             <ThemeToggle theme={theme} onToggle={onToggleTheme} />
 
+            {/* Provide a downloadable CV link for desktop users. */}
             <a
               href="/cv.pdf"
               download="cv.pdf"
@@ -55,6 +63,7 @@ export function Header({ theme, onToggleTheme }: HeaderProps) {
               Download CV
             </a>
 
+            {/* Show the hamburger button only on small screens to open the mobile menu. */}
             <button
               type="button"
               aria-label="Toggle navigation"
@@ -71,6 +80,7 @@ export function Header({ theme, onToggleTheme }: HeaderProps) {
           </div>
         </div>
 
+        {/* Render the mobile navigation only when the menu has been opened. */}
         {isOpen ? (
           <nav className="mt-3 flex flex-col gap-2 border-t border-[color:var(--border-color)] pt-3 text-sm text-[color:var(--text-secondary)] sm:hidden" aria-label="Mobile navigation">
             {navItems.map((item) => (

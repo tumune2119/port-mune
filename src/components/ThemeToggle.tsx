@@ -1,5 +1,8 @@
 "use client";
 
+// ThemeToggle provides the light and dark mode switch used in the header.
+// It renders a simple button that lets the user toggle the visual theme and
+// communicates the current state back to the parent component.
 import { ThemeMode } from "@/data/portfolio";
 
 type ThemeToggleProps = {

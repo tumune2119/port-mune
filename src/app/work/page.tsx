@@ -1,3 +1,6 @@
+// This page presents a curated list of selected work highlights.
+// It gives visitors a simple overview of notable projects and provides a
+// clear path back to the main portfolio homepage.
 import Link from "next/link";
 
 const workItems = [

@@ -1,3 +1,6 @@
+// SocialLinks renders the external profile buttons used throughout the portfolio.
+// It maps over the shared social link data and chooses the correct icon for each
+// platform so the page can show a consistent set of links.
 import { socialLinks } from "@/data/socialLinks";
 
 function getIcon(label: string) {

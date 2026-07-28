@@ -1,3 +1,6 @@
+// This page provides the dedicated contact experience for the portfolio.
+// It combines an introductory message with a form so visitors can reach out
+// about collaborations, freelance work, or product design conversations.
 import Link from "next/link";
 
 export default function ContactPage() {

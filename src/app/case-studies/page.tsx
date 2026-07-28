@@ -1,3 +1,6 @@
+// This page highlights longer-form case studies that explain the thinking
+// behind the work. It organizes those stories into a readable overview and
+// gives visitors a clear route back to the main homepage.
 import Link from "next/link";
 
 const studies = [

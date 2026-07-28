@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
+/* Global theme variables and shared styling for the portfolio experience. */
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {

@@ -1,3 +1,6 @@
+// The root layout provides the shared document shell for the site.
+// It defines the page metadata, loads the custom fonts, and wraps all pages
+// in the base HTML structure that the app uses globally.
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";

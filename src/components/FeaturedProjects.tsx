@@ -1,5 +1,8 @@
 "use client";
 
+// This component showcases featured projects and case studies in a visually rich layout.
+// It renders cards for each project, and when a visitor selects one, it opens a
+// modal with more detailed information such as outcomes, highlights, and tags.
 import { useMemo, useState } from "react";
 import { caseStudies, featuredProjects } from "@/data/portfolio";
 
@@ -17,13 +20,16 @@ type ModalItem = {
 };
 
 export function FeaturedProjects() {
+  // Keep track of which project or case study is currently selected for the modal.
   const [activeItem, setActiveItem] = useState<ModalItem | null>(null);
 
+  // Build the modal content only when an item is selected to avoid rendering empty UI.
   const modalContent = useMemo(() => {
     if (!activeItem) return null;
 
     return (
       <div className="fixed inset-0 z-50 flex items-end justify-center bg-slate-950/70 px-4 py-6 backdrop-blur-sm sm:items-center">
+        {/* The modal overlay uses a centered panel with scrollable content for longer descriptions. */}
         <div className="max-h-[85vh] w-full max-w-3xl overflow-y-auto rounded-[28px] border border-white/20 bg-[color:var(--surface)] p-6 shadow-[0_30px_90px_rgba(2,6,23,0.45)] sm:p-8">
           <div className="flex items-start justify-between gap-4">
             <div>
@@ -32,6 +38,7 @@ export function FeaturedProjects() {
               ) : null}
               <h3 className="mt-2 text-2xl font-semibold text-[color:var(--text-primary)]">{activeItem.title}</h3>
             </div>
+            {/* Allow the user to close the modal and return to the project grid. */}
             <button
               type="button"
               onClick={() => setActiveItem(null)}
@@ -100,6 +107,7 @@ export function FeaturedProjects() {
         </h2>
       </div>
 
+      {/* Render the featured project cards first, using the data from the portfolio content file. */}
       <div className="mb-10 grid gap-5 lg:grid-cols-3">
         {featuredProjects.map((project) => (
           <button
@@ -126,6 +134,7 @@ export function FeaturedProjects() {
         ))}
       </div>
 
+      {/* Render the case study cards in a second grid below the featured projects. */}
       <div className="grid gap-5 lg:grid-cols-3">
         {caseStudies.map((study) => (
           <button key={study.title} type="button" onClick={() => setActiveItem(study)} className="cursor-pointer text-left">

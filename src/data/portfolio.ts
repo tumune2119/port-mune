@@ -1,3 +1,6 @@
+// This file stores the reusable content shown across the portfolio.
+// It defines the theme type plus the structured data used by the projects,
+// case studies, and experience sections so the UI can stay consistent.
 export type ThemeMode = "dark" | "light";
 
 export const featuredProjects = [
