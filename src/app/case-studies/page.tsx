@@ -27,14 +27,14 @@ export default function CaseStudiesPage() {
             Deep dives into process and outcomes.
           </h1>
         </div>
-        <Link href="/" className="rounded-full border border-[color:var(--border-color)] px-4 py-2 text-sm font-medium text-[color:var(--text-secondary)] transition hover:text-[color:var(--accent)]">
+        <Link href="/" className="rounded-2xl border border-[color:var(--border-color)] px-4 py-2 text-sm font-medium text-[color:var(--text-secondary)] transition hover:text-[color:var(--accent)]">
           Back home
         </Link>
       </div>
 
       <div className="grid gap-5">
         {studies.map((study) => (
-          <article key={study.title} className="rounded-[1.5rem] border border-[color:var(--border-color)] bg-[color:var(--surface)] p-6 shadow-sm">
+          <article key={study.title} className="rounded-2xl border border-[color:var(--border-color)] bg-[color:var(--surface)] p-6 shadow-sm">
             <h2 className="text-xl font-semibold text-[color:var(--text-primary)]">{study.title}</h2>
             <p className="mt-3 text-sm leading-7 text-[color:var(--text-secondary)]">{study.blurb}</p>
           </article>

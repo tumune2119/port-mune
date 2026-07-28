@@ -27,14 +27,14 @@ export default function WorkPage() {
             Selected projects and product thinking.
           </h1>
         </div>
-        <Link href="/" className="rounded-full border border-[color:var(--border-color)] px-4 py-2 text-sm font-medium text-[color:var(--text-secondary)] transition hover:text-[color:var(--accent)]">
+        <Link href="/" className="rounded-2xl border border-[color:var(--border-color)] px-4 py-2 text-sm font-medium text-[color:var(--text-secondary)] transition hover:text-[color:var(--accent)]">
           Back home
         </Link>
       </div>
 
       <div className="grid gap-5">
         {workItems.map((item) => (
-          <article key={item.title} className="rounded-[1.5rem] border border-[color:var(--border-color)] bg-[color:var(--surface)] p-6 shadow-sm">
+          <article key={item.title} className="rounded-2xl border border-[color:var(--border-color)] bg-[color:var(--surface)] p-6 shadow-sm">
             <h2 className="text-xl font-semibold text-[color:var(--text-primary)]">{item.title}</h2>
             <p className="mt-3 text-sm leading-7 text-[color:var(--text-secondary)]">{item.blurb}</p>
           </article>

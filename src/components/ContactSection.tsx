@@ -1,6 +1,59 @@
+"use client";
+
+import { FormEvent, useRef, useState } from "react";
+
 export function ContactSection() {
+  const formRef = useRef<HTMLFormElement>(null);
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setStatus("sending");
+
+    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+
+    if (!serviceId || !templateId || !publicKey) {
+      setStatus("error");
+      return;
+    }
+
+    const form = formRef.current;
+    if (!form) {
+      setStatus("error");
+      return;
+    }
+
+    const formData = new FormData(form);
+    const name = (formData.get("name") as string | null)?.toString().trim() ?? "";
+    const email = (formData.get("email") as string | null)?.toString().trim() ?? "";
+    const message = (formData.get("message") as string | null)?.toString().trim() ?? "";
+
+    const templateParams = {
+      name,
+      email,
+      message,
+      from_name: name,
+      from_email: email,
+      reply_to: email,
+      user_name: name,
+      user_email: email,
+    };
+
+    try {
+      const emailjs = (await import("emailjs-com")).default;
+      emailjs.init(publicKey);
+      await emailjs.send(serviceId, templateId, templateParams, publicKey);
+      form.reset();
+      setStatus("success");
+    } catch {
+      setStatus("error");
+    }
+  };
+
   return (
-    <section id="contact" className="mt-16 rounded-[2rem] border border-[color:var(--border-color)] bg-[color:var(--surface)] p-8 shadow-sm transition-colors sm:p-10">
+    <section id="contact" className="scroll-mt-28 mt-16 rounded-2xl border border-white/20 bg-white/10 p-8 shadow-[0_10px_40px_rgba(15,23,42,0.08)] backdrop-blur-xl transition-colors sm:p-10 dark:border-white/10 dark:bg-slate-900/20">
       <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
         <div>
           <p className="text-sm font-semibold uppercase tracking-[0.3em] text-[color:var(--text-secondary)]">
@@ -14,24 +67,22 @@ export function ContactSection() {
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
             <a
-              href="mailto:hello@portmune.com"
-              className="rounded-full bg-[color:var(--accent)] px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-[color:var(--accent-strong)]"
+              href="mailto:tumune2119@gmail.com"
+              className="rounded-full bg-[color:var(--accent)] px-5 py-3 text-sm font-semibold text-white shadow-[0_8px_24px_rgba(163,230,53,0.16)] transition duration-300 hover:-translate-y-0.5 hover:bg-[color:var(--accent-strong)] dark:text-slate-950"
             >
               Email me
             </a>
             <a
               href="/cv.pdf"
               download="cv.pdf"
-              className="rounded-full border border-[color:var(--border-color)] px-5 py-3 text-sm font-semibold text-[color:var(--text-secondary)] transition hover:text-[color:var(--accent)]"
+              className="rounded-full border border-[color:var(--border-color)] bg-[color:var(--surface-strong)]/70 px-5 py-3 text-sm font-semibold text-[color:var(--text-secondary)] shadow-[0_6px_20px_rgba(15,23,42,0.06)] transition duration-300 hover:-translate-y-0.5 hover:border-[color:var(--accent)] hover:text-[color:var(--accent)]"
             >
               Download CV
             </a>
           </div>
         </div>
 
-        <form action="https://formsubmit.co/hello@portmune.com" method="POST" className="space-y-4 rounded-[1.25rem] border border-[color:var(--border-color)] bg-[color:var(--surface-muted)] p-5">
-          <input type="hidden" name="_subject" value="New portfolio enquiry" />
-          <input type="hidden" name="_captcha" value="false" />
+        <form ref={formRef} onSubmit={handleSubmit} className="space-y-4 rounded-2xl border border-[color:var(--border-color)] bg-[color:var(--surface-muted)] p-5">
           <div>
             <label className="mb-2 block text-sm font-medium text-[color:var(--text-primary)]" htmlFor="name">
               Name
@@ -72,10 +123,17 @@ export function ContactSection() {
           </div>
           <button
             type="submit"
-            className="rounded-full bg-[color:var(--accent)] px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-[color:var(--accent-strong)]"
+            disabled={status === "sending"}
+            className="rounded-full bg-[color:var(--accent)] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[color:var(--accent-strong)] disabled:cursor-not-allowed disabled:opacity-70 dark:text-slate-950"
           >
-            Send message
+            {status === "sending" ? "Sending..." : "Send message"}
           </button>
+          {status === "success" && (
+            <p className="text-sm text-[color:var(--accent)]">Your message has been sent successfully.</p>
+          )}
+          {status === "error" && (
+            <p className="text-sm text-red-500">Something went wrong. Please try again later.</p>
+          )}
         </form>
       </div>
     </section>

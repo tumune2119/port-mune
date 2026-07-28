@@ -1,13 +1,15 @@
 "use client";
 
 import { useEffect, useState, type CSSProperties } from "react";
+import { ContactSection } from "@/components/ContactSection";
+import { ExperienceTimeline } from "@/components/ExperienceTimeline";
+import { FeaturedProjects } from "@/components/FeaturedProjects";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { ThemeMode } from "@/data/portfolio";
 
 export default function Home() {
   const [theme, setTheme] = useState<ThemeMode>("dark");
-  const [isWiping, setIsWiping] = useState(false);
 
   useEffect(() => {
     const storedTheme = window.localStorage.getItem("theme") as ThemeMode | null;
@@ -22,22 +24,20 @@ export default function Home() {
     document.documentElement.dataset.theme = theme;
     window.localStorage.setItem("theme", theme);
 
-    document.documentElement.style.setProperty("--page-bg", theme === "dark" ? "#020617" : "#f8ffe8");
-    document.documentElement.style.setProperty("--page-bg-accent", theme === "dark" ? "#111827" : "#f2fce8");
-    document.documentElement.style.setProperty("--surface", theme === "dark" ? "#111827" : "#ffffff");
-    document.documentElement.style.setProperty("--surface-muted", theme === "dark" ? "#1f2937" : "#f7fee7");
-    document.documentElement.style.setProperty("--surface-strong", theme === "dark" ? "#0f172a" : "#ffffff");
+    document.documentElement.style.setProperty("--page-bg", theme === "dark" ? "#01040d" : "#f4f8e6");
+    document.documentElement.style.setProperty("--page-bg-accent", theme === "dark" ? "#0d1426" : "#edf6d8");
+    document.documentElement.style.setProperty("--surface", theme === "dark" ? "#0d1426" : "#fdfef7");
+    document.documentElement.style.setProperty("--surface-muted", theme === "dark" ? "#141d33" : "#f2f8df");
+    document.documentElement.style.setProperty("--surface-strong", theme === "dark" ? "#111827" : "#fefdf8");
     document.documentElement.style.setProperty("--text-primary", theme === "dark" ? "#f8fafc" : "#0f172a");
     document.documentElement.style.setProperty("--text-secondary", theme === "dark" ? "#cbd5e1" : "#475569");
     document.documentElement.style.setProperty("--border-color", theme === "dark" ? "rgba(255,255,255,0.12)" : "rgba(15,23,42,0.08)");
-    document.documentElement.style.setProperty("--accent", "#a3e635");
-    document.documentElement.style.setProperty("--accent-strong", "#84cc16");
+    document.documentElement.style.setProperty("--accent", theme === "dark" ? "#a3e635" : "#4d7c0f");
+    document.documentElement.style.setProperty("--accent-strong", theme === "dark" ? "#84cc16" : "#3f6212");
   }, [theme]);
 
   const toggleTheme = () => {
-    setIsWiping(true);
     setTheme((current) => (current === "dark" ? "light" : "dark"));
-    window.setTimeout(() => setIsWiping(false), 700);
   };
 
   const pageStyle: CSSProperties = {
@@ -46,21 +46,13 @@ export default function Home() {
   };
 
   return (
-    <div className="relative min-h-screen overflow-hidden transition-colors duration-700" style={pageStyle}>
-      <div
-        className="pointer-events-none fixed inset-0 z-40 transition-[clip-path,opacity] duration-700"
-        style={{
-          opacity: isWiping ? 1 : 0,
-          clipPath: isWiping ? "circle(150% at 50% 50%)" : "circle(0% at 50% 50%)",
-          background:
-            theme === "dark"
-              ? "linear-gradient(135deg, rgba(163,230,53,0.38), rgba(2,6,23,0.95))"
-              : "linear-gradient(135deg, rgba(163,230,53,0.22), rgba(255,255,255,0.95))",
-        }}
-      />
-      <main className="mx-auto flex min-h-screen max-w-6xl flex-col justify-center px-6 py-8 sm:px-10 lg:px-16 lg:py-12">
+    <div className="relative min-h-screen overflow-hidden transition-colors duration-500" style={pageStyle}>
+      <main className="mx-auto flex min-h-screen max-w-6xl flex-col px-6 pt-24 pb-8 sm:px-10 sm:pt-28 lg:px-16 lg:pt-30 lg:pb-12">
         <Header theme={theme} onToggleTheme={toggleTheme} />
         <Hero />
+        <FeaturedProjects />
+        <ExperienceTimeline />
+        <ContactSection />
       </main>
     </div>
   );

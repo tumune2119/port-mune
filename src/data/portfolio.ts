@@ -44,3 +44,27 @@ export const caseStudies = [
     tags: ["Portfolio", "Next.js", "Motion"],
   },
 ];
+
+export const experienceMilestones = [
+  {
+    period: "2022 — Present",
+    type: "Student • Design & Front-End",
+    title: "Building a practice around product thinking and visual storytelling",
+    description:
+      "Developing a personal design system, sharpening frontend craft, and turning ideas into polished digital experiences.",
+  },
+  {
+    period: "2020 — 2022",
+    type: "Student • Creative Technology",
+    title: "Studied interaction, storytelling, and interface systems",
+    description:
+      "Focused on design foundations, visual communication, and the relationship between content and user experience.",
+  },
+  {
+    period: "2018 — 2020",
+    type: "Early work • Freelance & collaboration",
+    title: "Started creating digital work for clients and personal projects",
+    description:
+      "Gained early experience building concepts, visuals, and simple websites while learning to ship work quickly.",
+  },
+];

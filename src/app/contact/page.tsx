@@ -12,12 +12,12 @@ export default function ContactPage() {
             Let’s talk about your next idea.
           </h1>
         </div>
-        <Link href="/" className="rounded-full border border-[color:var(--border-color)] px-4 py-2 text-sm font-medium text-[color:var(--text-secondary)] transition hover:text-[color:var(--accent)]">
+        <Link href="/" className="rounded-2xl border border-[color:var(--border-color)] px-4 py-2 text-sm font-medium text-[color:var(--text-secondary)] transition hover:text-[color:var(--accent)]">
           Back home
         </Link>
       </div>
 
-      <section className="rounded-[2rem] border border-[color:var(--border-color)] bg-[color:var(--surface)] p-8 shadow-sm">
+      <section className="rounded-2xl border border-[color:var(--border-color)] bg-[color:var(--surface)] p-8 shadow-sm">
         <p className="max-w-2xl text-sm leading-7 text-[color:var(--text-secondary)]">
           Send a message and I&apos;ll get back to you about collaborations, freelance work, or product design conversations.
         </p>
