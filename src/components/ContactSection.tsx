@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useRef, useState } from "react";
+import { SocialLinks } from "@/components/SocialLinks";
 
 export function ContactSection() {
   const formRef = useRef<HTMLFormElement>(null);
@@ -80,6 +81,8 @@ export function ContactSection() {
               Download CV
             </a>
           </div>
+
+          <SocialLinks className="mt-6" />
         </div>
 
         <form ref={formRef} onSubmit={handleSubmit} className="space-y-4 rounded-2xl border border-[color:var(--border-color)] bg-[color:var(--surface-muted)] p-5">

@@ -6,6 +6,7 @@ import { ExperienceTimeline } from "@/components/ExperienceTimeline";
 import { FeaturedProjects } from "@/components/FeaturedProjects";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
+import { SocialLinks } from "@/components/SocialLinks";
 import { ThemeMode } from "@/data/portfolio";
 
 export default function Home() {
@@ -53,6 +54,13 @@ export default function Home() {
         <FeaturedProjects />
         <ExperienceTimeline />
         <ContactSection />
+
+        <footer className="mt-16 border-t border-[color:var(--border-color)] pt-6 text-sm text-[color:var(--text-secondary)]">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <p>© 2026 Tharindu Munasinghe. All rights reserved.</p>
+            <SocialLinks />
+          </div>
+        </footer>
       </main>
     </div>
   );
